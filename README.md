@@ -1,2 +1,2 @@
-# inkling
+# wordji
 word game
