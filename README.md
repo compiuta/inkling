@@ -1,2 +1,2 @@
-# wordji
+# lettr
 word game
