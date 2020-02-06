@@ -4,25 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Wordji | Word Game</title>
-        <link rel="stylesheet" href="css/wordji-styles.css">
+        <title>lettr | Word Game</title>
+        <link rel="stylesheet" href="css/lettr-styles.css">
     </head>
     <body>
-        <h1>Wordji</h1>
+        <h1>lettr</h1>
         <div  data-js="guessed-letters" class="guessed-letters-container"></div>
         <div data-js="word-container" class="word-container"></div>
 
         <div class="user-input__container">
-            <form action="" class="uder-input__form">
-                <div class="user-input-field-container">
-                    <input data-js="user-guess-input" type="text" class="user-input__user-guess">
-                    <button data-js="user-guess-submit" class="user-input__submit">submit</button data-js="user-guess">
+            <form data-js="user-guess-form" action="" class="uder-guess__form">
+                <div class="user-guess-field-container">
+                    <input data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1">
+                    <button data-js="user-guess-submit" class="user-guess__submit">submit</button data-js="user-guess">
                 </div>
             </form>
         </div>
 
-        <script src="js/model/wordji-model.js"></script>
-        <script src="js/views/wordji-view.js"></script>
-        <script src="js/controller/wordji-controller.js"></script>
+        <script src="js/model/lettr-model.js"></script>
+        <script src="js/views/lettr-view.js"></script>
+        <script src="js/controller/lettr-controller.js"></script>
     </body>
 </html>
