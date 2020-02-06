@@ -54,8 +54,9 @@
                 app.lettrView.render();
             } else {
                 alert('this letter is not found in the word :(');
-                app.lettrView.populateSelectedLetters(app.lettrModel.guessedLetters);
             }
+
+            app.lettrView.populateSelectedLetters(app.lettrModel.guessedLetters);
         },
         init: function() {
             app.lettrModel.init();
