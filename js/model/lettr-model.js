@@ -7,9 +7,10 @@
             1: 'another',
             2: 'test'
         },
-        guessCounter: '',
+        guessCounter: 0,
         guessedLetters: [],
         selectedWord: '',
+        allowedGuesses: 6,
         selectRandomWordKey: function() {
             let randomKey = Math.floor(Math.random() * Object.keys(this.wordBank).length);
             this.selectedWord = this.wordBank[randomKey];
