@@ -26,11 +26,20 @@
 
             return this.wordToDisplay;
         },
+        guessesAvailable: function() {
+            let guessAvailable ={
+                guessUsed: app.lettrModel.guessCounter,
+                guessAvailable: app.lettrModel.allowedGuesses - app.lettrModel.guessCounter
+            }
+
+            return guessAvailable;
+        },
         validateUserGuess: function(e) {
             e.preventDefault();
     
             let guess = app.lettrView.userGuessInput.value;
             let regex=/^[a-zA-Z]+$/;
+
             if (guess.match(regex)){
                 app.lettrController.isGuessDuplicate(guess);
             } else {
@@ -40,7 +49,7 @@
         },
         isGuessDuplicate: function(guess) {
             if(app.lettrModel.guessedLetters.includes(guess)) {
-                alert('You have already guessed this letter pleae choose a different letter :)');
+                alert('You have already guessed this letter please choose a different letter :)');
                 return;
             } else {
                 this.checkUserGuess(guess);
@@ -51,9 +60,11 @@
 
             if(this.wordLetterArray.includes(guess)) {
                 alert('letter exists in word!');
-                app.lettrView.render();
+                app.lettrView.displayWord();
             } else {
+                app.lettrModel.guessCounter++;
                 alert('this letter is not found in the word :(');
+                app.lettrView.populateAvailableGuesses();
             }
 
             app.lettrView.populateSelectedLetters(app.lettrModel.guessedLetters);
