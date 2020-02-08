@@ -2,8 +2,15 @@
     'use-strict';
 
     let lettrView = {
-        displayWord: function(word) {
+        displayWord: function() {
             this.wordContainter.innerText = app.lettrController.wordFormatToDisplay();
+        },
+        setGuessInputMaxLength: function() {
+            if(app.lettrView.formLetterRadioOption.checked) {
+                app.lettrView.userGuessInput.setAttribute('maxlength', '1');
+            } else {
+                app.lettrView.userGuessInput.removeAttribute('maxlength');
+            }
         },
         createAvailableGuessElement: function(isUsed) {
             let isGuessAvailable = document.createElement('div');
@@ -35,34 +42,45 @@
 
             this.availableGuessesContainer.appendChild(fragment);
         },
-        createSelectedLetterElement: function() {
-            let guessedLetter = document.createElement('div');
-            guessedLetter.classList.add('guessed-letter');
-            return guessedLetter;
+        createGuessedElementContainer: function(isLetter) {
+            let guessedElement = document.createElement('div');
+
+            if(isLetter) {
+                guessedElement.classList.add('guessed-letter');
+            } else {
+                guessedElement.classList.add('guessed-word');
+            }
+
+            return guessedElement;
         },
-        populateSelectedLetters: function(data) {
-            this.guessedLettersContainer.innerHTML = '';
+        populateGuessedElementContainers: function(data, container, isLetter) {
+            container.innerHTML = '';
 
             let fragment =  document.createDocumentFragment();
 
             for(let i = 0; i < data.length; i++) {
-                let guessedLetter = this.createSelectedLetterElement();
-                guessedLetter.innerText = data[i];
-                fragment.appendChild(guessedLetter);
+                let guessedElement = this.createGuessedElementContainer(isLetter);
+                guessedElement.innerText = data[i];
+                fragment.appendChild(guessedElement);
             }
             
-            this.guessedLettersContainer.appendChild(fragment);
+            container.appendChild(fragment);
         },
         addEventListeners: function() {
             this.userGuessForm.addEventListener('submit', app.lettrController.validateUserGuess);
+            this.formLetterRadioOption.addEventListener('change', this.setGuessInputMaxLength);
+            this.formWordRadioOption.addEventListener('change', this.setGuessInputMaxLength);
         },
         getDomElements: function() {
             this.guessedLettersContainer = document.querySelector('[data-js="guessed-letters"]');
+            this.guessWordsContainer = document.querySelector('[data-js="guessed-words"]');
             this.availableGuessesContainer = document.querySelector('[data-js="available-guesses-container"]');
             this.wordContainter = document.querySelector('[data-js="word-container"]');
             this.userGuessInput = document.querySelector('[data-js="user-guess-input"]');
             this.userGuessSubmit = document.querySelector('[data-js="user-guess-submit"]');
             this.userGuessForm = document.querySelector('[data-js="user-guess-form"]');
+            this.formLetterRadioOption = document.querySelector('#guess-letter');
+            this.formWordRadioOption = document.querySelector('#guess-word');
         },
         render: function() {
             this.displayWord();
