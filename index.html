@@ -10,12 +10,25 @@
     <body>
         <h1>lettr</h1>
         <div  data-js="guessed-letters" class="guessed-letters-container"></div>
+        <div  data-js="guessed-words" class="guessed-words-container"></div>
         <div data-js="available-guesses-container" class="available-guesses-container"></div>
         <div data-js="word-container" class="word-container"></div>
 
         <div class="user-input__container">
             <form data-js="user-guess-form" action="" class="uder-guess__form">
                 <div class="user-guess-field-container">
+                    <div class="guess-option__cotainer">
+                        <!--guess-option-radio inputs must be added before label for css style-->
+                        <input type="radio" name="guess-option" id="guess-letter" class="guess-letter" checked> 
+                        <label for="guess-letter" class="guess-option__letter">
+                            Guess A Letter
+                        </label>
+
+                        <input type="radio" name="guess-option" id="guess-word" class="guess-word">
+                        <label for="guess-word" class="guess-option__word">
+                            Guess A Word
+                        </label>
+                    </div>
                     <input data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1">
                     <button data-js="user-guess-submit" class="user-guess__submit">submit</button data-js="user-guess">
                 </div>
