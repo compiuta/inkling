@@ -5,3 +5,14 @@
 body {
     margin: 0;
 }
+
+.guess-letter,
+.guess-word {
+    display: none;
+}
+
+.guess-letter:checked ~ .guess-option__letter,
+.guess-word:checked ~ .guess-option__word {
+    background-color:blue;
+    color: white;
+}
