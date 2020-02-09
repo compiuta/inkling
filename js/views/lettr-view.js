@@ -1,9 +1,9 @@
 (function(window){
-    'use-strict';
+    'use strict';
 
     let lettrView = {
-        displayWord: function() {
-            this.wordContainter.innerText = app.lettrController.wordFormatToDisplay();
+        displayWord: function(newLevel) {
+            this.wordContainter.innerText = app.lettrController.wordFormatToDisplay(newLevel);
         },
         setGuessInputMaxLength: function() {
             if(app.lettrView.formLetterRadioOption.checked) {
@@ -81,6 +81,10 @@
             this.userGuessForm = document.querySelector('[data-js="user-guess-form"]');
             this.formLetterRadioOption = document.querySelector('#guess-letter');
             this.formWordRadioOption = document.querySelector('#guess-word');
+        },
+        clearBoardView: function() {
+            this.guessedLettersContainer.innerHTML = '';
+            this.guessWordsContainer.innerHTML = '';
         },
         render: function() {
             this.displayWord();
