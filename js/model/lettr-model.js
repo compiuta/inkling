@@ -1,19 +1,20 @@
 (function(window) {
-    'use-strict';
+    'use strict';
 
     let lettrModel = {
-        wordBank: {
-            0: 'yet',
-            1: 'another',
-            2: 'test'
-        },
-        guessCounter: 0,
+        wordBank: [
+            'yet',
+            'another',
+            'test'
+        ],
+        incorrectGuessCounter: 0,
         guessedLetters: [],
         guessedWords: [],
         selectedWord: '',
         allowedGuesses: 6,
+        userScore: 0,
         selectRandomWordKey: function() {
-            let randomKey = Math.floor(Math.random() * Object.keys(this.wordBank).length);
+            let randomKey = Math.floor(Math.random() * this.wordBank.length);
             this.selectedWord = this.wordBank[randomKey];
             this.removeSelectedWord(randomKey);
         },
@@ -26,7 +27,13 @@
             }
         },
         removeSelectedWord: function(randomKey) {
-            delete this.wordBank[randomKey];
+            this.wordBank.splice(randomKey, 1);
+        },
+        clearBoardModel() {
+            this.guessedLetters = [];
+            this.guessedWords = [];
+
+            this.selectRandomWordKey();
         },
         init: function() {
             this.selectRandomWordKey();
