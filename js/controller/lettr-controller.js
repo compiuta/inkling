@@ -1,5 +1,5 @@
 (function(window) {
-    'use-strict';
+    'use strict';
 
     let lettrController = {
         formatWordToArray: function() {
@@ -11,9 +11,8 @@
 
             return this.wordLetterArray;
         },
-        wordFormatToDisplay: function() {
-
-            if(app.lettrView.formWordRadioOption.checked) {
+        wordFormatToDisplay: function(newLevel) {
+            if(app.lettrView.formWordRadioOption.checked && !newLevel) {
 
                 return app.lettrModel.selectedWord;
 
@@ -38,24 +37,25 @@
         },
         guessesAvailable: function() {
             let guessAvailable ={
-                guessUsed: app.lettrModel.guessCounter,
-                guessAvailable: app.lettrModel.allowedGuesses - app.lettrModel.guessCounter
+                guessUsed: app.lettrModel.incorrectGuessCounter,
+                guessAvailable: app.lettrModel.allowedGuesses - app.lettrModel.incorrectGuessCounter
             }
 
             return guessAvailable;
         },
         validateUserGuess: function(e) {
             e.preventDefault();
+            let isGuessedWord = app.lettrView.formWordRadioOption.checked;
 
             let guess = app.lettrView.userGuessInput.value.toLowerCase().replace(/ /g, '');
 
             if(app.lettrView.formLetterRadioOption.checked) {
 
-                app.lettrController.userGuessedLetter(guess);
+                app.lettrController.validateGuessedLetter(guess);
 
-            } else if(app.lettrView.formWordRadioOption.checked) {
-
-                app.lettrController.userGuessedWord(guess);
+            } else if(isGuessedWord) {
+                app.lettrController.isGuessDuplicate(guess, isGuessedWord);
+                //app.lettrController.userGuessedWord(guess);
 
             } else {
 
@@ -64,7 +64,7 @@
             }
             
         },
-        userGuessedLetter: function(guess){
+        validateGuessedLetter: function(guess){
             let regex = /^[a-zA-Z]+$/;
 
             if (guess.match(regex)){
@@ -74,42 +74,72 @@
                 return;
             }
         },
-        isGuessDuplicate: function(guess) {
-            if(app.lettrModel.guessedLetters.includes(guess)) {
-                alert('You have already guessed this letter please choose a different letter :)');
+        isGuessDuplicate: function(guess, isGuessedWord) {
+            if(app.lettrModel.guessedLetters.includes(guess) || app.lettrModel.guessedWords.includes(guess)) {
+                alert('You have already guessed this. Please chose a different guess :)');
                 return;
             } else {
-                this.checkUserGuess(guess);
+                this.checkUserGuess(guess, isGuessedWord);
             }
         },
         userGuessedWord: function(guess) {
-            app.lettrModel.addGuessToArray(guess, true);
-
             if(app.lettrModel.selectedWord === guess) {
                 alert('That is the correct word! :)');
                 app.lettrView.displayWord();
             } else {
-                app.lettrModel.guessCounter++;
+                app.lettrModel.incorrectGuessCounter++;
                 alert('That is not the correct word :(');
                 app.lettrView.populateAvailableGuesses();
             }
 
             app.lettrView.populateGuessedElementContainers(app.lettrModel.guessedWords, app.lettrView.guessWordsContainer);
-
         },
-        checkUserGuess: function(guess) {
-            app.lettrModel.addGuessToArray(guess);
-
+        userGuessedLetter: function(guess) {
             if(this.wordLetterArray.includes(guess)) {
                 alert('letter exists in word!');
                 app.lettrView.displayWord();
             } else {
-                app.lettrModel.guessCounter++;
+                app.lettrModel.incorrectGuessCounter++;
                 alert('this letter is not found in the word :(');
                 app.lettrView.populateAvailableGuesses();
             }
 
             app.lettrView.populateGuessedElementContainers(app.lettrModel.guessedLetters, app.lettrView.guessedLettersContainer, true);
+        },
+        checkUserGuess: function(guess, isGuessWord) {
+            app.lettrModel.addGuessToArray(guess, isGuessWord);
+            if(isGuessWord) {
+                app.lettrController.userGuessedWord(guess);
+            } else {
+                app.lettrController.userGuessedLetter(guess);
+            }
+
+            this.checkIfGameOver();
+        },
+        checkIfGameOver: function() {
+            if(app.lettrView.wordContainter.innerText === app.lettrModel.selectedWord) {
+                this.UserWins();
+            } else if(app.lettrModel.incorrectGuessCounter === app.lettrModel.allowedGuesses) {
+                this.UserLoses();
+            } else {
+                return;
+            }
+        },
+        UserWins: function() {
+            alert('you win!!!');
+            app.lettrModel.userScore++;
+            this.startNewLevel();
+        },
+        UserLoses: function() {
+            alert('You lose :(');
+        },
+        startNewLevel: function() {
+            app.lettrModel.clearBoardModel();
+            app.lettrView.clearBoardView();
+            app.lettrView.displayWord(true);
+        },
+        startNewGame:function() {
+
         },
         init: function() {
             app.lettrModel.init();
