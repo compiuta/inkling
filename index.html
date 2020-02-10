@@ -8,42 +8,50 @@
         <link rel="stylesheet" href="css/lettr-styles.css">
     </head>
     <body>
-        <h1>lettr</h1>
-        <div class="guessed-letters-area">
-            <h4 class="guessed-letters-title">Your Guessed Letters</h4 class>
-            <div  data-js="guessed-letters" class="guessed-letters-container"></div>
-        </div>
-        <div class="guessed-words-area">
-            <h4 class="guessed-words-title">Your Guessed Words</h4>
-            <div  data-js="guessed-words" class="guessed-words-container"></div>
-        </div>
-        <div data-js="available-guesses-container" class="available-guesses-container"></div>
-        <div data-js="word-container" class="word-container"></div>
-
-        <div class="user-input__container">
-            <form data-js="user-guess-form" action="" class="user-guess__form">
-                <div class="user-guess-field-container">
-                    <div class="guess-option__cotainer">
-                        <!--guess-option-radio inputs must be added before label for css style-->
-                        <input type="radio" name="guess-option" id="guess-letter" class="guess-letter" checked> 
-                        <label for="guess-letter" class="guess-option__letter">
-                            Guess A Letter
-                        </label>
-
-                        <input type="radio" name="guess-option" id="guess-word" class="guess-word">
-                        <label for="guess-word" class="guess-option__word">
-                            Guess A Word
-                        </label>
-                    </div>
-                    <input data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1">
-                    <button data-js="user-guess-submit" class="user-guess__submit">submit</button data-js="user-guess">
+        <div class="max-width-container">
+            <div class="main-grid-container">
+                <header class="main-header">
+                    <h1 class="header-title">lettr</h1>
+                </header>
+                
+                <div class="guessed-letters-area">
+                    <h4 class="guessed-letters-title">Your Guessed Letters</h4 class>
+                    <div  data-js="guessed-letters" class="guessed-letters-container"></div>
                 </div>
-            </form>
-        </div>
+                <div class="guessed-words-area">
+                    <h4 class="guessed-words-title">Your Guessed Words</h4>
+                    <div  data-js="guessed-words" class="guessed-words-container"></div>
+                </div>
+                <div data-js="available-guesses-container" class="available-guesses-container"></div>
+                <div data-js="word-container" class="word-container"></div>
 
-        <div class="user-score-container">
-            your score: 
-            <span data-js="user-score" class="user-score"></span>
+                <form id="user-guess-form" data-js="user-guess-form" action="" class="user-guess__form">
+                    <input form="user-guess-form" data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1">
+                </form>
+
+                <div class="guess-form-option guess-letter-radio">
+                    <input form="user-guess-form" type="radio" name="guess-option" id="guess-letter" class="guess-letter" checked> 
+                    <label form="user-guess-form" for="guess-letter" class="guess-option__letter">
+                        Guess A Letter
+                    </label>
+                </div>
+                
+                <div class="guess-form-option guess-word-radio">
+                    <input form="user-guess-form" type="radio" name="guess-option" id="guess-word" class="guess-word">
+                    <label form="user-guess-form" for="guess-word" class="guess-option__word">
+                        Guess A Word
+                    </label>
+                </div>
+
+                <div class="guess-form-button-container">
+                    <button form="user-guess-form" data-js="user-guess-submit" class="user-guess__submit">submit</button>
+                </div>
+
+                <div class="user-score-container">
+                    your score: 
+                    <span data-js="user-score" class="user-score"></span>
+                </div>
+            </div>
         </div>
 
         <script src="js/model/lettr-model.js"></script>
