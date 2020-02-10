@@ -132,6 +132,7 @@
         },
         UserLoses: function() {
             alert('You lose :(');
+            this.startNewGame();
         },
         startNewLevel: function() {
             app.lettrModel.clearBoardModel();
@@ -139,7 +140,9 @@
             app.lettrView.displayWord(true);
         },
         startNewGame:function() {
-
+            app.lettrModel.clearBoardModel(true);
+            app.lettrView.clearBoardView();
+            app.lettrView.render();
         },
         init: function() {
             app.lettrModel.init();
