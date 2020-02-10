@@ -6,6 +6,61 @@ body {
     margin: 0;
 }
 
+.main-grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+        "white-1 blank-1 blank-1 blank-1 overlayed-1 header"
+        "blue purple-1 blank-2 blank-2 blank-2 header"
+        "word word red-1 blank-3 blank-3 header"
+        "score score blank-4 white-2 shape shape"
+        "guess-option form form form shape shape"
+        "guess-option-2 button button life life life"
+        "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words"
+        "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words";
+}
+
+.main-header {
+    grid-area: header;
+}
+
+.word-container{
+    grid-area: word;
+}
+
+.available-guesses-container {
+    grid-area: life;
+}
+
+.guess-letter-radio {
+    grid-area: guess-option;
+}
+
+.guess-word-radio {
+    grid-area: guess-option-2;
+}
+
+.user-score-container {
+    grid-area: score;
+}
+
+.user-guess__form {
+    grid-area: form;
+}
+
+.guessed-letters-area {
+    grid-area: guessed-letters;
+}
+
+.guessed-words-area {
+    grid-area: guessed-words;
+}
+
+.guess-form-button-container {
+    grid-area: button;
+}
+
 .guess-letter,
 .guess-word {
     display: none;
