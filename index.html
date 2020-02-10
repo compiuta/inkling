@@ -9,8 +9,14 @@
     </head>
     <body>
         <h1>lettr</h1>
-        <div  data-js="guessed-letters" class="guessed-letters-container"></div>
-        <div  data-js="guessed-words" class="guessed-words-container"></div>
+        <div class="guessed-letters-area">
+            <h4 class="guessed-letters-title">Your Guessed Letters</h4 class>
+            <div  data-js="guessed-letters" class="guessed-letters-container"></div>
+        </div>
+        <div class="guessed-words-area">
+            <h4 class="guessed-words-title">Your Guessed Words</h4>
+            <div  data-js="guessed-words" class="guessed-words-container"></div>
+        </div>
         <div data-js="available-guesses-container" class="available-guesses-container"></div>
         <div data-js="word-container" class="word-container"></div>
 
@@ -33,6 +39,11 @@
                     <button data-js="user-guess-submit" class="user-guess__submit">submit</button data-js="user-guess">
                 </div>
             </form>
+        </div>
+
+        <div class="user-score-container">
+            your score: 
+            <span data-js="user-score" class="user-score"></span>
         </div>
 
         <script src="js/model/lettr-model.js"></script>
