@@ -12,25 +12,74 @@ body {
     grid-template-rows: repeat(8, 1fr);
     grid-template-areas: 
         "white-1 blank-1 blank-1 blank-1 overlayed-1 header"
-        "blue purple-1 blank-2 blank-2 blank-2 header"
+        "blue-1 purple-1 blank-2 blank-2 blank-2 header"
         "word word red-1 blank-3 blank-3 header"
-        "score score blank-4 white-2 shape shape"
-        "guess-option form form form shape shape"
+        "score score blank-4 white-2 shape-1 shape-1"
+        "guess-option form form form shape-1 shape-1"
         "guess-option-2 button button life life life"
         "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words"
         "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words";
 }
 
+body {
+    background-image: url('https://cdn.pixabay.com/photo/2020/02/04/16/00/cheetah-4818603_960_720.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.white-1 {
+    grid-area: white-1;
+    background-color: #fff;
+}
+
+.white-2 {
+    grid-area: white-2;
+    background-color: #fff;
+}
+
+.overlayed-1 {
+    grid-area: overlayed-1;
+    background-color: rgba(168, 206, 225, .5);
+}
+
+.blue-1 {
+    grid-area: blue-1;
+    background-color: #a9cfe2;
+}
+
+.purple-1 {
+    grid-area: purple-1;
+    background-color: #293881;
+}
+
+.red-1 {
+    grid-area: red-1;
+    background-color: #e54238;
+}
+
 .main-header {
     grid-area: header;
+    background-color: #293881;
+    color: #fff;
 }
 
 .word-container{
     grid-area: word;
+    background-color: #fff;
+    color: #2f2f2f;
+}
+
+.user-score-container {
+    grid-area: score;
+    background-color: #fff;
+    colo: #2f2f2f;
 }
 
 .available-guesses-container {
     grid-area: life;
+    background-color: #e54238;
+    color: #fff;
 }
 
 .guess-letter-radio {
@@ -41,24 +90,45 @@ body {
     grid-area: guess-option-2;
 }
 
-.user-score-container {
-    grid-area: score;
-}
-
 .user-guess__form {
     grid-area: form;
+    background-color: #293881; 
+}
+
+.user-guess__input,
+.user-guess__submit {
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+}
+
+.user-guess__input {
+    background-color: #293881;
 }
 
 .guessed-letters-area {
     grid-area: guessed-letters;
+    background-color: #fff;
+    color: #2f2f2f;
 }
 
 .guessed-words-area {
     grid-area: guessed-words;
+    background-color: #fff;
+    color: #2f2f2f;
 }
 
 .guess-form-button-container {
     grid-area: button;
+    background-color: #a9cfe2;
+}
+
+.user-guess__submit {
+    background-color: #a9cfe2;
 }
 
 .guess-letter,
@@ -66,8 +136,16 @@ body {
     display: none;
 }
 
+.guess-option__letter,
+.guess-option__word {
+    background-color: #fff;
+    color: #2f2f2f;
+    display: block;
+    height: 100%;
+}
+
 .guess-letter:checked ~ .guess-option__letter,
 .guess-word:checked ~ .guess-option__word {
-    background-color:blue;
-    color: white;
+    background-color: #e54238;
+    color: #fff;
 }
