@@ -128,6 +128,7 @@
         UserWins: function() {
             alert('you win!!!');
             app.lettrModel.userScore++;
+            app.lettrView.populateUserScore(app.lettrModel.userScore);
             this.startNewLevel();
         },
         UserLoses: function() {
@@ -147,6 +148,7 @@
         init: function() {
             app.lettrModel.init();
             app.lettrView.init();
+            app.lettrView.populateUserScore(app.lettrModel.userScore);
         }
     }
 
