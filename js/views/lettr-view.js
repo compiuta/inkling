@@ -25,6 +25,9 @@
 
             return isGuessAvailable;
         },
+        populateUserScore: function(userScore) {
+            this.userScoreContainer.innerText = userScore;
+        },
         populateAvailableGuesses: function() {
             let fragment = document.createDocumentFragment();
             let guessAvailableObject = app.lettrController.guessesAvailable();
@@ -81,6 +84,7 @@
             this.userGuessForm = document.querySelector('[data-js="user-guess-form"]');
             this.formLetterRadioOption = document.querySelector('#guess-letter');
             this.formWordRadioOption = document.querySelector('#guess-word');
+            this.userScoreContainer = document.querySelector('[data-js="user-score"]');
         },
         clearBoardView: function() {
             this.guessedLettersContainer.innerHTML = '';
