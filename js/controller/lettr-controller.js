@@ -55,7 +55,6 @@
 
             } else if(isGuessedWord) {
                 app.lettrController.isGuessDuplicate(guess, isGuessedWord);
-                //app.lettrController.userGuessedWord(guess);
 
             } else {
 
