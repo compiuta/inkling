@@ -8,13 +8,15 @@
         setGuessInputMaxLength: function() {
             if(app.lettrView.formLetterRadioOption.checked) {
                 app.lettrView.userGuessInput.setAttribute('maxlength', '1');
+                app.lettrView.userGuessInput.setAttribute('placeholder', 'Input Letter');
             } else {
                 app.lettrView.userGuessInput.removeAttribute('maxlength');
+                app.lettrView.userGuessInput.setAttribute('placeholder', 'Input Word');
             }
         },
         createAvailableGuessElement: function(isUsed) {
             let isGuessAvailable = document.createElement('div');
-            isGuessAvailable.classList.add('guess-availale');
+            isGuessAvailable.classList.add('guess-available');
             if(isUsed) {
                 isGuessAvailable.classList.add('guess-used');
                 isGuessAvailable.innerText = 'X';
