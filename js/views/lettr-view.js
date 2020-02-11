@@ -19,10 +19,8 @@
             isGuessAvailable.classList.add('guess-available');
             if(isUsed) {
                 isGuessAvailable.classList.add('guess-used');
-                isGuessAvailable.innerText = 'X';
             } else {
                 isGuessAvailable.classList.add('guess-not-used');
-                isGuessAvailable.innerText = 'O';
             }
 
             return isGuessAvailable;
@@ -71,6 +69,45 @@
             
             container.appendChild(fragment);
         },
+        toggleUserForm: function() {
+            this.userGuessForm.classList.toggle('hide');
+        },
+        toggleAlertBox: function() {
+            app.lettrView.alertBox.classList.toggle('hide');
+        },
+        toggleButtonView: function() {
+            this.alertBoxButton.classList.toggle('hide');
+        },
+        userWinsListener: function() {
+            app.lettrController.UserWins(true);
+        },
+        addAlertButtonListener: function(doesUserWins) {
+            if(doesUserWins) {
+                app.lettrView.alertBoxButton.addEventListener('click', this.userWinsListener);
+            } else {
+                app.lettrView.alertBoxButton.addEventListener('click', app.lettrController.startNewGame);
+            }
+        },
+        showUserMessage: function(message, showButton, disableTimeOut) {
+            
+            clearTimeout(this.currentSetTimeout);
+
+            this.alertBoxMessage.innerText = message;
+
+            if(app.lettrView.alertBox.classList.contains('hide')){
+                this.toggleAlertBox();
+                
+            }
+
+            if(!disableTimeOut) {
+                this.currentSetTimeout = setTimeout(this.toggleAlertBox, 3000);
+            }
+
+            if(showButton) {
+                this.toggleButtonView();
+            }
+            
+        },
         addEventListeners: function() {
             this.userGuessForm.addEventListener('submit', app.lettrController.validateUserGuess);
             this.formLetterRadioOption.addEventListener('change', this.setGuessInputMaxLength);
@@ -87,6 +124,10 @@
             this.formLetterRadioOption = document.querySelector('#guess-letter');
             this.formWordRadioOption = document.querySelector('#guess-word');
             this.userScoreContainer = document.querySelector('[data-js="user-score"]');
+            this.alertBox = document.querySelector('[data-js="alert-box"]');
+            this.alertBoxIcon = document.querySelector('[data-js="alert-box-icon"]');
+            this.alertBoxMessage = document.querySelector('[data-js="alert-box-message"]');
+            this.alertBoxButton = document.querySelector('[data-js="alert-box-button"]');
         },
         clearBoardView: function() {
             this.guessedLettersContainer.innerHTML = '';
