@@ -69,25 +69,26 @@
             if (guess.match(regex)){
                 app.lettrController.isGuessDuplicate(guess);
             } else {
-                alert('This is not a valid character. Please choose a letter of the alphabet :)');
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.invalidCharacter);
                 return;
             }
         },
         isGuessDuplicate: function(guess, isGuessedWord) {
             if(app.lettrModel.guessedLetters.includes(guess) || app.lettrModel.guessedWords.includes(guess)) {
-                alert('You have already guessed this. Please chose a different guess :)');
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.duplicateGuess);
                 return;
             } else {
+                
                 this.checkUserGuess(guess, isGuessedWord);
             }
         },
         userGuessedWord: function(guess) {
+            
             if(app.lettrModel.selectedWord === guess) {
-                alert('That is the correct word! :)');
                 app.lettrView.displayWord();
             } else {
                 app.lettrModel.incorrectGuessCounter++;
-                alert('That is not the correct word :(');
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.incorrectWord);
                 app.lettrView.populateAvailableGuesses();
             }
 
@@ -95,11 +96,11 @@
         },
         userGuessedLetter: function(guess) {
             if(this.wordLetterArray.includes(guess)) {
-                alert('letter exists in word!');
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctLetter);
                 app.lettrView.displayWord();
             } else {
                 app.lettrModel.incorrectGuessCounter++;
-                alert('this letter is not found in the word :(');
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.incorrectLetter);
                 app.lettrView.populateAvailableGuesses();
             }
 
@@ -112,11 +113,13 @@
             } else {
                 app.lettrController.userGuessedLetter(guess);
             }
-
+            
             this.checkIfGameOver();
         },
         checkIfGameOver: function() {
+            
             if(app.lettrView.wordContainter.innerText === app.lettrModel.selectedWord) {
+                
                 this.UserWins();
             } else if(app.lettrModel.incorrectGuessCounter === app.lettrModel.allowedGuesses) {
                 this.UserLoses();
@@ -124,15 +127,25 @@
                 return;
             }
         },
-        UserWins: function() {
-            alert('you win!!!');
-            app.lettrModel.userScore++;
-            app.lettrView.populateUserScore(app.lettrModel.userScore);
-            this.startNewLevel();
+        UserWins: function(continueButtonClicked) {
+            if(continueButtonClicked) {
+                app.lettrView.populateUserScore(app.lettrModel.userScore);
+                this.startNewLevel();
+                app.lettrView.toggleAlertBox();
+                app.lettrView.toggleButtonView();
+                app.lettrView.toggleUserForm();
+                app.lettrView.alertBoxButton.removeEventListener('click', app.lettrView.userWinsListener);
+            } else {
+                app.lettrView.addAlertButtonListener(true);
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctWord, true, true);
+                app.lettrModel.userScore++;
+                app.lettrView.toggleUserForm();
+            }
         },
         UserLoses: function() {
-            alert('You lose :(');
-            this.startNewGame();
+            app.lettrView.toggleUserForm();
+            app.lettrView.showUserMessage(app.lettrModel.alertMessages.userLoses, true, true);
+            app.lettrView.addAlertButtonListener();
         },
         startNewLevel: function() {
             app.lettrModel.clearBoardModel();
@@ -142,7 +155,14 @@
         startNewGame:function() {
             app.lettrModel.clearBoardModel(true);
             app.lettrView.clearBoardView();
-            app.lettrView.render();
+            app.lettrView.toggleAlertBox();
+            app.lettrView.toggleButtonView();
+            app.lettrView.toggleUserForm();
+            app.lettrView.displayWord(true);
+            app.lettrView.populateAvailableGuesses();
+            app.lettrView.alertBoxButton.removeEventListener('click', app.lettrController.startNewGame);
+            app.lettrModel.userScore = 0;
+            app.lettrView.populateUserScore(app.lettrModel.userScore);
         },
         init: function() {
             app.lettrModel.init();
