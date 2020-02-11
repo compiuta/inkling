@@ -5,62 +5,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>lettr | Word Game</title>
+        <link href="https://fonts.googleapis.com/css?family=Croissant+One|PT+Sans:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/lettr-styles.css">
     </head>
-    <body>
+    <body class="body-tag">
         <div class="max-width-container">
-            <div class="main-grid-container">
-                <header class="main-header">
-                    <h1 class="header-title">lettr</h1>
-                </header>
-
-                <div class="white-1"></div>
-                <div class="white-2"></div>
-                <div class="overlayed-1"></div>
-                <div class="blue-1"></div>
-                <div class="purple-1"></div>
-                <div class="red-1"></div>
-                <div class="shape-1"></div>
-                <div class="shape-2"></div>
+            <header class="main-header">
+                <h1 class="header-title">lettr</h1>
+            </header>
+            <main class="main-content">
+                <div class="user-info-area">
+                    <div class="user-score-container">
+                        <h4 class="score-title info-title">Your Score: <span data-js="user-score" class="user-score"></span></h4> 
+                        
+                    </div>
+                    <div class="guesses-remaining-container">
+                        <h4 class="info-title">Remaining Guesses</h4>
+                        <div data-js="available-guesses-container" class="available-guesses-container info-content"></div>
+                    </div>
+                    <div class="guessed-letters-area">
+                        <h4 class="info-title">Your Guessed Letters</h4 class>
+                        <div  data-js="guessed-letters" class="guessed-letters-container info-content"></div>
+                    </div>
+                    <div class="guessed-words-area">
+                        <h4 class="info-title">Your Guessed Words</h4>
+                        <div  data-js="guessed-words" class="guessed-words-container info-content"></div>
+                    </div>
+                </div>
+                <div class="word-area">
+                    <div data-js="word-container" class="word-container"></div>
+                    <form id="user-guess-form" data-js="user-guess-form" action="" class="user-guess__form">
+                        <input form="user-guess-form" data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1" placeholder="Input Letter">
+                        <div class="guess-form-button-container">
+                            <button form="user-guess-form" data-js="user-guess-submit" class="user-guess__submit">submit</button>
+                        </div>
+                        <div class="user-guess__form-options">
+                            <div class="guess-form-option guess-letter-radio">
+                                <input form="user-guess-form" type="radio" name="guess-option" id="guess-letter" class="guess-letter" checked> 
+                                <label form="user-guess-form" for="guess-letter" class="guess-option guess-option__letter">
+                                    Letter
+                                </label>
+                            </div>
+                            <div class="guess-form-option guess-word-radio">
+                                <input form="user-guess-form" type="radio" name="guess-option" id="guess-word" class="guess-word">
+                                <label form="user-guess-form" for="guess-word" class="guess-option guess-option__word">
+                                    Word
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+            <footer class="main-footer">
                 
-                <div class="guessed-letters-area">
-                    <h4 class="guessed-letters-title">Your Guessed Letters</h4 class>
-                    <div  data-js="guessed-letters" class="guessed-letters-container"></div>
-                </div>
-                <div class="guessed-words-area">
-                    <h4 class="guessed-words-title">Your Guessed Words</h4>
-                    <div  data-js="guessed-words" class="guessed-words-container"></div>
-                </div>
-                <div data-js="available-guesses-container" class="available-guesses-container"></div>
-                <div data-js="word-container" class="word-container"></div>
-
-                <form id="user-guess-form" data-js="user-guess-form" action="" class="user-guess__form">
-                    <input form="user-guess-form" data-js="user-guess-input" type="text" class="user-guess__input" maxlength="1" placeholder="Input Guess">
-                </form>
-
-                <div class="guess-form-option guess-letter-radio">
-                    <input form="user-guess-form" type="radio" name="guess-option" id="guess-letter" class="guess-letter" checked> 
-                    <label form="user-guess-form" for="guess-letter" class="guess-option__letter">
-                        Guess A Letter
-                    </label>
-                </div>
-                
-                <div class="guess-form-option guess-word-radio">
-                    <input form="user-guess-form" type="radio" name="guess-option" id="guess-word" class="guess-word">
-                    <label form="user-guess-form" for="guess-word" class="guess-option__word">
-                        Guess A Word
-                    </label>
-                </div>
-
-                <div class="guess-form-button-container">
-                    <button form="user-guess-form" data-js="user-guess-submit" class="user-guess__submit">submit</button>
-                </div>
-
-                <div class="user-score-container">
-                    your score: 
-                    <span data-js="user-score" class="user-score"></span>
-                </div>
-            </div>
+            </footer>
         </div>
 
         <script src="js/model/lettr-model.js"></script>
