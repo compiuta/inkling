@@ -14,6 +14,10 @@ h4 {
     min-height: 100vh;
 }
 
+.hide {
+    display: none!important;
+}
+
 .max-width-container {
     max-width: 1800px;
     margin: 0 auto;
@@ -21,7 +25,7 @@ h4 {
 }
 
 .main-header {
-    padding: 10px 0;
+    padding: 30px 0;
 }
 
 .header-title {
@@ -62,6 +66,10 @@ h4 {
     height: 100%;
     padding: 20px 10px;
 
+}
+
+.guessed-words-container {
+    flex-direction: column;
 }
 
 .guess-letter,
@@ -143,19 +151,36 @@ h4 {
 .guessed-letter,
 .guessed-word {
     padding: 5px 8px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.guessed-word {
-    width: 100%;
+.alert-box {
+    padding: 30px 50px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    min-width: 50%;
+}
+
+.alert-box__warning {
+    background-color: #ec4e4f;
+}
+
+.alert-box__success {
+    background-color: #43aa4e;
+}
+
+.available-guesses-container {
+    justify-content: space-around;
+    align-items: center;
 }
 
 .guess-available {
-    font-size: 26px;
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;;
 }
 
 .guess-not-used {
