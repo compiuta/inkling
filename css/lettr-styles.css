@@ -2,133 +2,66 @@
     box-sizing: border-box;
 }
 
-body {
+h4 {
     margin: 0;
 }
 
-.main-grid-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    grid-template-areas: 
-        "white-1 blank-1 blank-1 blank-1 overlayed-1 header"
-        "blue-1 purple-1 blank-2 blank-2 blank-2 header"
-        "word word red-1 blank-3 blank-3 header"
-        "score score blank-4 white-2 shape-1 shape-1"
-        "guess-option form form form shape-1 shape-1"
-        "guess-option-2 button button life life life"
-        "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words"
-        "shape-2 shape-2 guessed-letters guessed-letters guessed-words guessed-words";
+.body-tag {
+    margin: 0;
+    background-color: #31191d;
+    color: #e84f39;
+    font-family: 'PT Sans', sans-serif;
+    min-height: 100vh;
 }
 
-body {
-    background-image: url('https://cdn.pixabay.com/photo/2020/02/04/16/00/cheetah-4818603_960_720.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-}
-
-.white-1 {
-    grid-area: white-1;
-    background-color: #fff;
-}
-
-.white-2 {
-    grid-area: white-2;
-    background-color: #fff;
-}
-
-.overlayed-1 {
-    grid-area: overlayed-1;
-    background-color: rgba(168, 206, 225, .5);
-}
-
-.blue-1 {
-    grid-area: blue-1;
-    background-color: #a9cfe2;
-}
-
-.purple-1 {
-    grid-area: purple-1;
-    background-color: #293881;
-}
-
-.red-1 {
-    grid-area: red-1;
-    background-color: #e54238;
+.max-width-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 40px 40px 40px;
 }
 
 .main-header {
-    grid-area: header;
-    background-color: #293881;
-    color: #fff;
+    padding: 10px 0;
 }
 
-.word-container{
-    grid-area: word;
-    background-color: #fff;
-    color: #2f2f2f;
-}
-
-.user-score-container {
-    grid-area: score;
-    background-color: #fff;
-    colo: #2f2f2f;
-}
-
-.available-guesses-container {
-    grid-area: life;
-    background-color: #e54238;
-    color: #fff;
-}
-
-.guess-letter-radio {
-    grid-area: guess-option;
-}
-
-.guess-word-radio {
-    grid-area: guess-option-2;
+.header-title {
+    margin: 0;
+    font-family: 'Croissant One', cursive;
 }
 
 .user-guess__form {
-    grid-area: form;
-    background-color: #293881; 
+    display: flex;
+    position: relative;
+    border-bottom: 2px solid #e84f39;
+    border-right: 2px solid #e84f39;
 }
 
 .user-guess__input,
 .user-guess__submit {
     -webkit-appearance: none;
     border: none;
-    width: 100%;
-    height: 100%;
     text-align: center;
     font-size: 30px;
-    color: #fff;
+    font-family: 'PT Sans', sans-serif; 
 }
 
 .user-guess__input {
-    background-color: #293881;
+    background-color: transparent;
+    color: #fff;
+    margin-top: 10px;
 }
 
-.guessed-letters-area {
-    grid-area: guessed-letters;
-    background-color: #fff;
-    color: #2f2f2f;
-}
-
-.guessed-words-area {
-    grid-area: guessed-words;
-    background-color: #fff;
-    color: #2f2f2f;
-}
-
-.guess-form-button-container {
-    grid-area: button;
-    background-color: #a9cfe2;
+.user-guess__input:focus {
+    outline: none;
 }
 
 .user-guess__submit {
-    background-color: #a9cfe2;
+    cursor: pointer;
+    background-color: #e84f39;
+    color: #fff;
+    height: 100%;
+    padding: 20px 10px;
+
 }
 
 .guess-letter,
@@ -136,16 +69,133 @@ body {
     display: none;
 }
 
-.guess-option__letter,
-.guess-option__word {
-    background-color: #fff;
-    color: #2f2f2f;
-    display: block;
-    height: 100%;
+.user-guess__form-options {
+    position: absolute;
+    display: flex;
+    background-color: #31191d;
+    top: 5px;
+}
+
+.guess-option {
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    border-radius: 5PX;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    border: 1px solid #e54238;
+}
+
+.guess-option__letter {
+    margin-right: 5px;
 }
 
 .guess-letter:checked ~ .guess-option__letter,
 .guess-word:checked ~ .guess-option__word {
     background-color: #e54238;
     color: #fff;
+}
+
+.main-content {
+    display: flex;
+}
+
+.word-area {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.word-container {
+    font-size: 70px;
+    color: #fff;
+    margin-bottom: 100px;
+}
+
+.user-score-container,
+.guesses-remaining-container,
+.guessed-letters-area,
+.guessed-words-area {
+    border-radius: 5px;
+    border: 2px solid #e54238;
+    margin: 0 0 20px 0;
+}
+
+.info-title {
+    padding: 10px 8px;
+    border-bottom: 2px solid #e54238;
+    color: #fff;
+}
+
+.score-title {
+    border: 0;
+}
+
+.info-content {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 40px;
+}
+
+.guessed-letter,
+.guessed-word {
+    padding: 5px 8px;
+}
+
+.guessed-word {
+    width: 100%;
+}
+
+.guess-available {
+    font-size: 26px;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.guess-not-used {
+    background-color: #43aa4e;
+}
+
+.guess-used {
+    background-color: #ec4e4f;
+}
+
+@media (max-width: 991px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .user-guess__form {
+        flex-direction: column;
+        border: 0;
+    }
+    
+    .user-guess__input {
+        padding: 40px 0 30px 0;
+    }
+
+    .guess-option {
+        font-size: 24px;
+        padding: 0 16px;
+    }
+
+    .user-guess__submit {
+        width: 100%;
+    }
+    
+    .word-container {
+        font-size: 40px;
+        margin-bottom: 70px;
+    }
+
+    .user-info-area {
+        max-height: 190px;
+        overflow: auto;
+    }
 }
