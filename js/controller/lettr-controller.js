@@ -8,12 +8,13 @@
             for(let i = 0; i < app.lettrModel.selectedWord.length; i++) {
                 this.wordLetterArray.push(app.lettrModel.selectedWord[i]);
             }
-
+            console.log(this.wordLetterArray);
             return this.wordLetterArray;
         },
-        wordFormatToDisplay: function(newLevel) {
-            if(app.lettrView.formWordRadioOption.checked && !newLevel) {
+        wordFormatToDisplay: function(newLevel, newGame) {
 
+            if((app.lettrView.formWordRadioOption.checked && !newLevel) || newGame || (app.lettrModel.incorrectGuessCounter === 6)) {
+                
                 return app.lettrModel.selectedWord;
 
             } else {
@@ -78,7 +79,7 @@
                 app.lettrView.showUserMessage(app.lettrModel.alertMessages.duplicateGuess);
                 return;
             } else {
-                
+                app.lettrView.userGuessInput.value = '';
                 this.checkUserGuess(guess, isGuessedWord);
             }
         },
@@ -96,7 +97,7 @@
         },
         userGuessedLetter: function(guess) {
             if(this.wordLetterArray.includes(guess)) {
-                app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctLetter);
+                app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctLetter, 'guess-success');
                 app.lettrView.displayWord();
             } else {
                 app.lettrModel.incorrectGuessCounter++;
@@ -128,24 +129,31 @@
             }
         },
         UserWins: function(continueButtonClicked) {
+            app.lettrView.populateUserScore(app.lettrModel.userScore);
             if(continueButtonClicked) {
-                app.lettrView.populateUserScore(app.lettrModel.userScore);
+                
                 this.startNewLevel();
                 app.lettrView.toggleAlertBox();
                 app.lettrView.toggleButtonView();
                 app.lettrView.toggleUserForm();
                 app.lettrView.alertBoxButton.removeEventListener('click', app.lettrView.userWinsListener);
             } else {
-                app.lettrView.addAlertButtonListener(true);
-                app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctWord, true, true);
                 app.lettrModel.userScore++;
-                app.lettrView.toggleUserForm();
+
+                if(app.lettrModel.wordBank.length > 0) {
+                    app.lettrView.addAlertButtonListener(true);
+                    app.lettrView.showUserMessage(app.lettrModel.alertMessages.correctWord, 'guess-success', true, true, 'Next Level');
+                    app.lettrView.toggleUserForm();
+                } else {
+                    app.lettrController.noMoreWords();
+                }
             }
         },
         UserLoses: function() {
             app.lettrView.toggleUserForm();
-            app.lettrView.showUserMessage(app.lettrModel.alertMessages.userLoses, true, true);
+            app.lettrView.showUserMessage(app.lettrModel.alertMessages.userLoses,'guess-warning', true, true, 'Start New Game');
             app.lettrView.addAlertButtonListener();
+            app.lettrView.displayWord(false, true);
         },
         startNewLevel: function() {
             app.lettrModel.clearBoardModel();
@@ -153,19 +161,40 @@
             app.lettrView.displayWord(true);
         },
         startNewGame:function() {
-            app.lettrModel.clearBoardModel(true);
+            app.lettrView.startOverlayToggle();
+            app.lettrModel.clearBoardModel(false, true);
             app.lettrView.clearBoardView();
             app.lettrView.toggleAlertBox();
             app.lettrView.toggleButtonView();
             app.lettrView.toggleUserForm();
-            app.lettrView.displayWord(true);
             app.lettrView.populateAvailableGuesses();
             app.lettrView.alertBoxButton.removeEventListener('click', app.lettrController.startNewGame);
+            app.lettrModel.incorrectGuessCounter = 0;
             app.lettrModel.userScore = 0;
             app.lettrView.populateUserScore(app.lettrModel.userScore);
         },
-        init: function() {
+        noMoreWords: function() {
+            app.lettrView.toggleUserForm();
+            app.lettrView.showUserMessage(app.lettrModel.alertMessages.noWords, 'guess-success', true, true, 'Start New Game');
+            app.lettrView.addAlertButtonListener();
+        },
+        startUserInitializedGame: function(e) {
+            e.preventDefault();
+
+            let wordToPopulate = app.lettrView.userUniqueWordInput.value.toLowerCase().replace(/ /g, '');
+            app.lettrModel.selectedWord = wordToPopulate;
+            app.lettrView.populateOverlaySelectedWord(wordToPopulate);
+            app.lettrView.userUniqueWordInput.value = '';
+        },
+        userInputInit: function() {
+            app.lettrView.showUserWordInputForm();
+        },
+        presetInit: function() {
             app.lettrModel.init();
+            app.lettrView.render();
+            app.lettrView.startOverlayToggle();
+        },
+        init: function() {
             app.lettrView.init();
             app.lettrView.populateUserScore(app.lettrModel.userScore);
         }
