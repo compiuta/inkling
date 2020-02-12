@@ -8,7 +8,7 @@
             for(let i = 0; i < app.lettrModel.selectedWord.length; i++) {
                 this.wordLetterArray.push(app.lettrModel.selectedWord[i]);
             }
-            console.log(this.wordLetterArray);
+            
             return this.wordLetterArray;
         },
         wordFormatToDisplay: function(newLevel, newGame) {
@@ -182,7 +182,7 @@
             e.preventDefault();
 
             let wordToPopulate = app.lettrView.userUniqueWordInput.value.toLowerCase().replace(/ /g, '');
-            
+
             if(wordToPopulate === ''){
                 return;
             } else {
