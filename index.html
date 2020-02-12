@@ -70,23 +70,27 @@
 
 
         <div js-data="start-overlay" class="start-overlay">
-            <div class="start-overlay__content">
-                <div js-data="start-overlay-random" class="start-overlay__choice">
-                    Start game with a preset word list and play against the computer.
-                </div>
-                <div js-data="start-overlay-choose" class="start-overlay__choice">
-                    Set your own word and let people guess what it is.
-                </div>
-                <div class="user-word-form-container">
-                    <form data-js="user-word-form" action="" class="user-word-form">
-                        <input data-js="user-unique-word" type="text" class="user-word-form__input">
-                        <button class="user-word-form__submit"></button>
-                    </form>
-                </div>
-                <div class="selected-word-area">
-                    <h4 class="selected-word-title">Your Selected Word</h4>
-                    <h3 data-js="selected-user-word" class="selected-user-word"></h3>
-                    <span data-js="start-game-button" class="start-game-button">Start Game!</span>
+            <div class="max-width-container">
+                <div class="start-overlay__content">
+                    <div js-data="start-overlay-random" class="start-overlay__choice">
+                        <h3 class="start-overlay__title">Preset List</h3 class="start-overlay__title">
+                        <p class="start-overlay__choice-description">Start the game with a preset word list and play against the computer.</p>
+                    </div>
+                    <div js-data="start-overlay-choose" class="start-overlay__choice">
+                        <h3 class="start-overlay__title">Choose Word</h3>
+                        <p  class="start-overlay__choice-description">Set your own word and let people guess what it is.</p>
+                    </div>
+                    <div class="user-word-form-container">
+                        <form data-js="user-word-form" action="" class="user-word-form">
+                            <input data-js="user-unique-word" type="text" class="user-word-form__input"placeholder="Input Word">
+                            <button class="user-word-form__submit">Set Word</button>
+                        </form>
+                    </div>
+                    <div class="selected-word-area">
+                        <h4 class="selected-word-title">Your Selected Word</h4>
+                        <h3 data-js="selected-user-word" class="selected-user-word"></h3>
+                        <span data-js="start-game-button" class="start-game-button">Start Game!</span>
+                    </div>
                 </div>
             </div>
         </div>
