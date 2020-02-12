@@ -13,7 +13,7 @@
             <header class="main-header">
                 <h1 class="header-title">lettr</h1>
             </header>
-            <main class="main-content">
+            <main js-data="main-content" class="main-content hide">
                 <div class="user-info-area">
                     <div class="user-score-container">
                         <h4 class="score-title info-title">Your Score: <span data-js="user-score" class="user-score"></span></h4> 
@@ -34,8 +34,10 @@
                 </div>
                 <div class="word-area">
                     <div data-js="alert-box" class="alert-box hide">
-                        <i data-js="alert-box-icon" class="alert-box__icon"></i>
-                        <p data-js="alert-box-message" class="alert-box_message"></p>
+                        <div class="alert-box__info">
+                            <i data-js="alert-box-icon" class="alert-box__icon">i</i>
+                            <p data-js="alert-box-message" class="alert-box_message"></p>
+                        </div>
                         <span data-js="alert-box-button" class="alert-box__button hide">next</span>
                     </div>
                     <div data-js="word-container" class="word-container"></div>
@@ -64,6 +66,29 @@
             <footer class="main-footer">
                 
             </footer>
+        </div>
+
+
+        <div js-data="start-overlay" class="start-overlay">
+            <div class="start-overlay__content">
+                <div js-data="start-overlay-random" class="start-overlay__choice">
+                    Start game with a preset word list and play against the computer.
+                </div>
+                <div js-data="start-overlay-choose" class="start-overlay__choice">
+                    Set your own word and let people guess what it is.
+                </div>
+                <div class="user-word-form-container">
+                    <form data-js="user-word-form" action="" class="user-word-form">
+                        <input data-js="user-unique-word" type="text" class="user-word-form__input">
+                        <button class="user-word-form__submit"></button>
+                    </form>
+                </div>
+                <div class="selected-word-area">
+                    <h4 class="selected-word-title">Your Selected Word</h4>
+                    <h3 data-js="selected-user-word" class="selected-user-word"></h3>
+                    <span data-js="start-game-button" class="start-game-button">Start Game!</span>
+                </div>
+            </div>
         </div>
 
         <script src="js/model/lettr-model.js"></script>
