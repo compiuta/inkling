@@ -2,10 +2,12 @@
     'use strict';
 
     let lettrView = {
-        displayWord: function(newLevel) {
+        displayWord: function(newLevel, newGame) {
             this.wordContainter.innerText = app.lettrController.wordFormatToDisplay(newLevel);
         },
         setGuessInputMaxLength: function() {
+            app.lettrView.userGuessInput.value = '';
+
             if(app.lettrView.formLetterRadioOption.checked) {
                 app.lettrView.userGuessInput.setAttribute('maxlength', '1');
                 app.lettrView.userGuessInput.setAttribute('placeholder', 'Input Letter');
@@ -75,8 +77,11 @@
         toggleAlertBox: function() {
             app.lettrView.alertBox.classList.toggle('hide');
         },
-        toggleButtonView: function() {
+        toggleButtonView: function(buttonText) {
             this.alertBoxButton.classList.toggle('hide');
+            if(buttonText) {
+                this.alertBoxButton.innerText = buttonText;
+            }
         },
         userWinsListener: function() {
             app.lettrController.UserWins(true);
@@ -88,11 +93,17 @@
                 app.lettrView.alertBoxButton.addEventListener('click', app.lettrController.startNewGame);
             }
         },
-        showUserMessage: function(message, showButton, disableTimeOut) {
+        showUserMessage: function(message, alertType, showButton, disableTimeOut, buttonText) {
             
             clearTimeout(this.currentSetTimeout);
 
             this.alertBoxMessage.innerText = message;
+
+            if(alertType) {
+                this.alertBox.classList.add(alertType);
+            } else {
+                this.alertBox.classList.remove('guess-success');
+            }
 
             if(app.lettrView.alertBox.classList.contains('hide')){
                 this.toggleAlertBox();
@@ -104,14 +115,38 @@
             }
 
             if(showButton) {
-                this.toggleButtonView();
+                this.toggleButtonView(buttonText);
             }
             
+        },
+        startOverlayToggle: function() {
+            app.lettrView.startOverlay.classList.toggle('hide');
+            app.lettrView.mainContentContainer.classList.toggle('hide');
+        },
+        showUserWordInputForm: function() {
+            this.startOverlay.classList.add('show-word-form');
+            if(this.startOverlay.classList.contains('hide')) {
+                this.startOverlayToggle();
+            }
+        },
+        populateOverlaySelectedWord: function(word) {
+            this.selectedUserWord.innerText = word;
+            this.startOverlay.classList.add('word-selected');
+        },
+        startGameFromOverlay: function() {
+            app.lettrView.render();
+            app.lettrView.startOverlayToggle();
+            app.lettrView.startOverlay.classList.remove('word-selected');
+            app.lettrView.startOverlay.classList.remove('show-word-form');
         },
         addEventListeners: function() {
             this.userGuessForm.addEventListener('submit', app.lettrController.validateUserGuess);
             this.formLetterRadioOption.addEventListener('change', this.setGuessInputMaxLength);
             this.formWordRadioOption.addEventListener('change', this.setGuessInputMaxLength);
+            this.startOverlayRandomButton.addEventListener('click', app.lettrController.presetInit);
+            this.startOverlayChooseButton.addEventListener('click', app.lettrController.userInputInit);
+            this.userWordForm.addEventListener('submit', app.lettrController.startUserInitializedGame);
+            this.startGamebutton.addEventListener('click', this.startGameFromOverlay);
         },
         getDomElements: function() {
             this.guessedLettersContainer = document.querySelector('[data-js="guessed-letters"]');
@@ -128,10 +163,20 @@
             this.alertBoxIcon = document.querySelector('[data-js="alert-box-icon"]');
             this.alertBoxMessage = document.querySelector('[data-js="alert-box-message"]');
             this.alertBoxButton = document.querySelector('[data-js="alert-box-button"]');
+            this.startOverlay = document.querySelector('[js-data="start-overlay"]');
+            this.startOverlayRandomButton = document.querySelector('[js-data="start-overlay-random"]');
+            this.startOverlayChooseButton = document.querySelector('[js-data="start-overlay-choose"]');
+            this.userWordForm = document.querySelector('[data-js="user-word-form"]');
+            this.userUniqueWordInput = document.querySelector('[data-js="user-unique-word"]');
+            this.selectedUserWord = document.querySelector('[data-js="selected-user-word"]');
+            this.startGamebutton = document.querySelector('[data-js="start-game-button"');
+            this.mainContentContainer = document.querySelector('[js-data="main-content"]');
         },
         clearBoardView: function() {
             this.guessedLettersContainer.innerHTML = '';
             this.guessWordsContainer.innerHTML = '';
+            this.formLetterRadioOption.checked = true;
+            this.formWordRadioOption.checked = false;
         },
         render: function() {
             this.displayWord();
@@ -140,7 +185,6 @@
         init: function() {
             this.getDomElements();
             this.addEventListeners();
-            this.render();
         }
     }
 
