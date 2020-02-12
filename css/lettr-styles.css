@@ -31,11 +31,18 @@ h4 {
 
 .start-overlay__content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    font-size: 26px;
+}
+
+.show-word-form .start-overlay__content {
+    flex-direction: column;
+    align-items: center;
 }
 
 .start-overlay__choice {
-    padding: 100px;
+    padding: 60px;
     border: 2px solid #e84f39;
     width: 48%;
     border-radius: 10px;
@@ -45,6 +52,11 @@ h4 {
 .start-overlay__choice:hover {
     background-color: #e84f39;
     color: #fff;
+}
+
+.selected-user-word {
+    color: #fff;
+    font-size: 36px;
 }
 
 .user-word-form-container,
@@ -62,6 +74,10 @@ h4 {
 
 .start-overlay.word-selected .selected-word-area {
     display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
 }
 
 .max-width-container {
@@ -87,7 +103,9 @@ h4 {
 }
 
 .user-guess__input,
-.user-guess__submit {
+.user-guess__submit,
+.user-word-form__input,
+.user-word-form__submit {
     -webkit-appearance: none;
     border: none;
     text-align: center;
@@ -95,23 +113,29 @@ h4 {
     font-family: 'PT Sans', sans-serif; 
 }
 
-.user-guess__input {
+.user-guess__input,
+.user-word-form__input {
     background-color: transparent;
     color: #fff;
     margin-top: 10px;
 }
 
-.user-guess__input:focus {
+.user-guess__input:focus,
+.user-word-form__input:focus {
     outline: none;
 }
 
-.user-guess__submit {
+.user-guess__submit,
+.user-word-form__submit {
     cursor: pointer;
     background-color: #e84f39;
     color: #fff;
     height: 100%;
     padding: 20px 10px;
+}
 
+.user-word-form__submit {
+    padding: 10px;
 }
 
 .guessed-words-container {
@@ -210,11 +234,20 @@ h4 {
     min-width: 50%;
 }
 
-.alert-box__button {
+.alert-box__button{
     padding: 5px 10px;
     background-color: #31191d;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.start-game-button {
+    display: inline-block;
+    background-color: #43aa4e;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
 }
 
 .alert-box__icon {
@@ -228,6 +261,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .alert-box__info {
@@ -256,6 +290,11 @@ h4 {
 
 .guess-used {
     background-color: #ec4e4f;
+}
+
+.user-word-form__input {
+    border-bottom: 2px solid #e84f39;
+    padding: 0 0 10px 0;
 }
 
 @media (max-width: 991px) {
@@ -289,5 +328,22 @@ h4 {
     .user-info-area {
         max-height: 190px;
         overflow: auto;
+        order: 1;
+        margin-top: 10px;
+    }
+
+    .start-overlay__choice {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 26px 30px;
+        font-size: 20px;
+    }
+
+    .user-word-form__submit {
+        width: 100%;
+    }
+
+    .alert-box {
+        padding: 30px;
     }
 }
