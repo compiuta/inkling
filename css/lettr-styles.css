@@ -18,6 +18,52 @@ h4 {
     display: none!important;
 }
 
+.start-overlay {
+    position: absolute;
+    top: 105px;
+    background-color: #31191d;
+    width: 100%;
+    height: calc(100% - 105px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.start-overlay__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-overlay__choice {
+    padding: 100px;
+    border: 2px solid #e84f39;
+    width: 48%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.start-overlay__choice:hover {
+    background-color: #e84f39;
+    color: #fff;
+}
+
+.user-word-form-container,
+.selected-word-area {
+    display: none;
+}
+
+.start-overlay.show-word-form .start-overlay__choice {
+     display: none;
+}
+
+.start-overlay.show-word-form .user-word-form-container {
+    display: block;
+}
+
+.start-overlay.word-selected .selected-word-area {
+    display: block;
+}
+
 .max-width-container {
     max-width: 1800px;
     margin: 0 auto;
@@ -164,11 +210,32 @@ h4 {
     min-width: 50%;
 }
 
-.alert-box__warning {
-    background-color: #ec4e4f;
+.alert-box__button {
+    padding: 5px 10px;
+    background-color: #31191d;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.alert-box__success {
+.alert-box__icon {
+    font-family: 'Croissant One', cursive;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #31191d;
+    color: #fff;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-box__info {
+    display: flex;
+    align-items: center;
+}
+
+.guess-success {
     background-color: #43aa4e;
 }
 
