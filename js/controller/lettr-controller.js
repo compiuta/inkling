@@ -14,7 +14,7 @@
         wordFormatToDisplay: function(newLevel, newGame) {
 
             if((app.lettrView.formWordRadioOption.checked && !newLevel) || newGame || (app.lettrModel.incorrectGuessCounter === 6)) {
-                
+
                 return app.lettrModel.selectedWord;
 
             } else {
@@ -182,9 +182,14 @@
             e.preventDefault();
 
             let wordToPopulate = app.lettrView.userUniqueWordInput.value.toLowerCase().replace(/ /g, '');
-            app.lettrModel.selectedWord = wordToPopulate;
-            app.lettrView.populateOverlaySelectedWord(wordToPopulate);
-            app.lettrView.userUniqueWordInput.value = '';
+            
+            if(wordToPopulate === ''){
+                return;
+            } else {
+                app.lettrModel.selectedWord = wordToPopulate;
+                app.lettrView.populateOverlaySelectedWord(wordToPopulate);
+                app.lettrView.userUniqueWordInput.value = '';
+            }
         },
         userInputInit: function() {
             app.lettrView.showUserWordInputForm();
