@@ -61,15 +61,20 @@
             correctLetter: 'Letter exists in the word!',
             incorrectLetter: 'This letter is not found in the word.',
             userWins: 'You Win!!!',
-            userLoses: 'You Lose'
-
+            userLoses: 'You Lose',
+            noWords: 'Congratulations! You have correctly guessed all words.'
         },
-        populateWordBank: function() {
+        populateWordBank: function(userSelectedWord) {
             this.wordBank = [];
 
-            for(let i = 0; i < this.words.length; i++) {
-                this.wordBank.push(this.words[i]);
+            if(userSelectedWord) {
+                this.wordBank.push(userSelectedWord);
+            } else {
+                for(let i = 0; i < this.words.length; i++) {
+                    this.wordBank.push(this.words[i]);
+                }
             }
+            
         },
         selectRandomWordKey: function() {
             let randomKey = Math.floor(Math.random() * this.wordBank.length);
@@ -87,7 +92,7 @@
         removeSelectedWord: function(randomKey) {
             this.wordBank.splice(randomKey, 1);
         },
-        clearBoardModel: function(newGame) {
+        clearBoardModel: function(newGame, startOver) {
 
             this.guessedLetters = [];
             this.guessedWords = [];
@@ -97,7 +102,9 @@
                 this.populateWordBank();
             }
 
-            this.selectRandomWordKey();
+            if(!startOver) {
+                this.selectRandomWordKey();
+            }
         },
         init: function() {
             this.populateWordBank();
