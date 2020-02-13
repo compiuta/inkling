@@ -177,6 +177,7 @@
             this.guessWordsContainer.innerHTML = '';
             this.formLetterRadioOption.checked = true;
             this.formWordRadioOption.checked = false;
+            app.lettrView.userGuessInput.setAttribute('maxlength', '1');
         },
         render: function() {
             this.displayWord();
