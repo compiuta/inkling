@@ -193,6 +193,7 @@ h4 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 100%;
 }
 
 .word-container {
@@ -201,6 +202,7 @@ h4 {
     margin-bottom: 100px;
     overflow: auto;
     width: 100%;
+    text-align: center;
 }
 
 .user-score-container,
