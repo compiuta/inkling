@@ -182,6 +182,11 @@ h4 {
     display: flex;
 }
 
+.user-info-area {
+    min-width: 15%;
+    margin-right: 45px;
+}
+
 .word-area {
     display: flex;
     flex: 1 1 auto;
@@ -194,6 +199,8 @@ h4 {
     font-size: 70px;
     color: #fff;
     margin-bottom: 100px;
+    overflow: auto;
+    width: 100%;
 }
 
 .user-score-container,
@@ -342,7 +349,8 @@ h4 {
         max-height: 190px;
         overflow: auto;
         order: 1;
-        margin-top: 10px;
+        margin: 10px 0 0 0;
+        min-width: 0;
     }
 
     .start-overlay__choice {
