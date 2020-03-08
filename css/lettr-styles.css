@@ -57,6 +57,7 @@ h4 {
 .selected-user-word {
     color: #fff;
     font-size: 36px;
+    overflow: auto;
 }
 
 .user-word-form-container,
@@ -141,6 +142,7 @@ h4 {
 
 .guessed-words-container {
     flex-direction: column;
+    overflow: auto;
 }
 
 .guess-letter,
@@ -299,6 +301,11 @@ h4 {
 }
 
 @media (max-width: 991px) {
+
+    .max-width-container {
+        padding: 0 10px 10px 10px;
+    }
+
     .main-content {
         flex-direction: column;
     }
@@ -310,6 +317,11 @@ h4 {
     
     .user-guess__input {
         padding: 40px 0 30px 0;
+        width: 100%;
+    }
+
+    .user-word-form__input {
+        width: 100%;
     }
 
     .guess-option {
