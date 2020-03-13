@@ -83,6 +83,9 @@
                 this.alertBoxButton.innerText = buttonText;
             }
         },
+        toggleLandingPage: function() {
+            app.lettrView.bodyTag.classList.toggle('landing-page');
+        },
         userWinsListener: function() {
             app.lettrController.UserWins(true);
         },
@@ -136,6 +139,7 @@
         startGameFromOverlay: function() {
             app.lettrView.render();
             app.lettrView.startOverlayToggle();
+            app.lettrView.toggleLandingPage();
             app.lettrView.startOverlay.classList.remove('word-selected');
             app.lettrView.startOverlay.classList.remove('show-word-form');
         },
@@ -149,6 +153,7 @@
             this.startGamebutton.addEventListener('click', this.startGameFromOverlay);
         },
         getDomElements: function() {
+            this.bodyTag = document.querySelector('[data-js="body-tag"]');
             this.guessedLettersContainer = document.querySelector('[data-js="guessed-letters"]');
             this.guessWordsContainer = document.querySelector('[data-js="guessed-words"]');
             this.availableGuessesContainer = document.querySelector('[data-js="available-guesses-container"]');
