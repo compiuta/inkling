@@ -14,6 +14,16 @@ h4 {
     min-height: 100vh;
 }
 
+.landing-page.body-tag {
+    background-image: url("../images/landing-background.png");
+    background-color: transparent;
+    color: #fff;
+}
+
+.landing-page .header-title {
+    color: #fff;
+}
+
 .hide {
     display: none!important;
 }
@@ -21,7 +31,6 @@ h4 {
 .start-overlay {
     position: absolute;
     top: 105px;
-    background-color: #31191d;
     width: 100%;
     height: calc(100% - 105px);
     display: flex;
@@ -43,15 +52,16 @@ h4 {
 
 .start-overlay__choice {
     padding: 60px;
-    border: 2px solid #e84f39;
+    border: 2px solid #fff;
     width: 48%;
     border-radius: 10px;
     cursor: pointer;
+    background-color: rgba(0,0,0, .5);
+    color: #fff;
 }
 
 .start-overlay__choice:hover {
-    background-color: #e84f39;
-    color: #fff;
+    background-color: rgba(0,0,0, .7);
 }
 
 .selected-user-word {
@@ -138,6 +148,19 @@ h4 {
 
 .user-word-form__submit {
     padding: 10px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+input::placeholder {
+    color: #fff;
+    opacity: 1;
+  }
+
+.user-word-form__submit:hover {
+    background-color: rgba(0,0,0,.7);
 }
 
 .guessed-words-container {
@@ -244,6 +267,8 @@ h4 {
     border-radius: 10px;
     font-size: 20px;
     min-width: 50%;
+    position: fixed;
+    top: 30px;
 }
 
 .alert-box__button{
@@ -305,7 +330,7 @@ h4 {
 }
 
 .user-word-form__input {
-    border-bottom: 2px solid #e84f39;
+    border-bottom: 2px solid #fff;
     padding: 0 0 10px 0;
 }
 
