@@ -8,8 +8,8 @@ h4 {
 
 .body-tag {
     margin: 0;
-    background-color: #31191d;
-    color: #e84f39;
+    background-color: #fff;
+    color: #474747;
     font-family: 'PT Sans', sans-serif;
     min-height: 100vh;
 }
@@ -110,8 +110,7 @@ h4 {
 .user-guess__form {
     display: flex;
     position: relative;
-    border-bottom: 2px solid #e84f39;
-    border-right: 2px solid #e84f39;
+    align-items: flex-end;
 }
 
 .user-guess__input,
@@ -128,8 +127,10 @@ h4 {
 .user-guess__input,
 .user-word-form__input {
     background-color: transparent;
-    color: #fff;
+    color: #474747;
     margin-top: 10px;
+    border-bottom: 2px solid #474747;
+    padding: 20px 0 10px 0;
 }
 
 .user-guess__input:focus,
@@ -142,8 +143,9 @@ h4 {
     cursor: pointer;
     background-color: #e84f39;
     color: #fff;
-    height: 100%;
-    padding: 20px 10px;
+    padding: 10px 20px;
+    margin-left: 5px;
+    border-radius: 10px;
 }
 
 .user-word-form__submit {
@@ -155,9 +157,13 @@ h4 {
 }
 
 input::placeholder {
-    color: #fff;
+    color: #474747;
     opacity: 1;
-  }
+}
+
+.user-word-form__input::placeholder {
+    color: #fff;
+}
 
 .user-word-form__submit:hover {
     background-color: rgba(0,0,0,.7);
@@ -176,7 +182,6 @@ input::placeholder {
 .user-guess__form-options {
     position: absolute;
     display: flex;
-    background-color: #31191d;
     top: 5px;
 }
 
@@ -221,30 +226,19 @@ input::placeholder {
 
 .word-container {
     font-size: 70px;
-    color: #fff;
     margin-bottom: 100px;
     overflow: auto;
     width: 100%;
     text-align: center;
 }
 
-.user-score-container,
-.guesses-remaining-container,
-.guessed-letters-area,
-.guessed-words-area {
-    border-radius: 5px;
-    border: 2px solid #e54238;
-    margin: 0 0 20px 0;
+.user-info__item {
+    margin-bottom: 25px;
 }
 
 .info-title {
     padding: 10px 8px;
     border-bottom: 2px solid #e54238;
-    color: #fff;
-}
-
-.score-title {
-    border: 0;
 }
 
 .info-content {
@@ -332,12 +326,17 @@ input::placeholder {
 .user-word-form__input {
     border-bottom: 2px solid #fff;
     padding: 0 0 10px 0;
+    color: #fff;
 }
 
 @media (max-width: 991px) {
 
     .max-width-container {
         padding: 0 10px 10px 10px;
+    }
+
+    .main-header {
+        padding: 5px 0;
     }
 
     .main-content {
@@ -350,12 +349,14 @@ input::placeholder {
     }
     
     .user-guess__input {
-        padding: 40px 0 30px 0;
+        padding: 40px 0 10px 0;
         width: 100%;
+        border: 0;
     }
 
     .user-word-form__input {
         width: 100%;
+        border: 0;
     }
 
     .guess-option {
@@ -363,7 +364,8 @@ input::placeholder {
         padding: 0 16px;
     }
 
-    .user-guess__submit {
+    .user-guess__submit,
+    .guess-form-button-container {
         width: 100%;
     }
     
