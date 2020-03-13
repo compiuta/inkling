@@ -161,6 +161,7 @@
             app.lettrView.displayWord(true);
         },
         startNewGame:function() {
+            app.lettrView.toggleLandingPage();
             app.lettrView.startOverlayToggle();
             app.lettrModel.clearBoardModel(false, true);
             app.lettrView.clearBoardView();
@@ -198,6 +199,7 @@
             app.lettrModel.init();
             app.lettrView.render();
             app.lettrView.startOverlayToggle();
+            app.lettrView.toggleLandingPage();
         },
         init: function() {
             app.lettrView.init();
