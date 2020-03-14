@@ -33,19 +33,7 @@
         populateAvailableGuesses: function() {
             let fragment = document.createDocumentFragment();
             let guessAvailableObject = app.lettrController.guessesAvailable();
-            this.availableGuessesContainer.innerHTML = '';
-            
-            for(let i = 0; i < guessAvailableObject.guessUsed; i++) {
-                let isGuessAvailable = this.createAvailableGuessElement('isUsed');
-                fragment.appendChild(isGuessAvailable);
-            }
-
-            for(let i = 0; i < guessAvailableObject.guessAvailable; i++) {
-                let isGuessAvailable = this.createAvailableGuessElement();
-                fragment.appendChild(isGuessAvailable);
-            }
-
-            this.availableGuessesContainer.appendChild(fragment);
+            app.lettrView.availableGuessesContainer.innerText = guessAvailableObject.guessAvailable;
         },
         createGuessedElementContainer: function(isLetter) {
             let guessedElement = document.createElement('div');
