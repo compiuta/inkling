@@ -48,6 +48,8 @@ h4 {
 .show-word-form .start-overlay__content {
     flex-direction: column;
     align-items: center;
+    background-color: rgba(0,0,0,.5);
+    padding: 50px 100px;
 }
 
 .start-overlay__choice {
@@ -141,7 +143,7 @@ h4 {
 .user-guess__submit,
 .user-word-form__submit {
     cursor: pointer;
-    background-color: #e84f39;
+    background-color: #271a47;
     color: #fff;
     padding: 10px 20px;
     margin-left: 5px;
@@ -193,7 +195,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     padding: 0 2px;
-    border: 1px solid #e54238;
+    border: 1px solid #271a47;
 }
 
 .guess-option__letter {
@@ -202,7 +204,7 @@ input::placeholder {
 
 .guess-letter:checked ~ .guess-option__letter,
 .guess-word:checked ~ .guess-option__word {
-    background-color: #e54238;
+    background-color: #271a47;
     color: #fff;
 }
 
@@ -212,6 +214,7 @@ input::placeholder {
 
 .user-info-area {
     min-width: 15%;
+    max-width: 15%;
     margin-right: 45px;
 }
 
@@ -238,7 +241,7 @@ input::placeholder {
 
 .info-title {
     padding: 10px 8px;
-    border-bottom: 2px solid #e54238;
+    border-bottom: 2px solid #271a47;
 }
 
 .info-content {
@@ -252,16 +255,21 @@ input::placeholder {
     padding: 5px 8px;
     font-size: 20px;
     font-weight: bold;
+    background-color: black;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin: 2px 2px 0 0;
 }
 
 .alert-box {
     padding: 30px 50px;
-    background-color: red;
+    background-color: rgba(204, 60, 57, .9);
     color: white;
     border-radius: 10px;
     font-size: 20px;
     min-width: 50%;
-    position: fixed;
+    position: absolute;
     top: 30px;
 }
 
@@ -301,7 +309,7 @@ input::placeholder {
 }
 
 .guess-success {
-    background-color: #43aa4e;
+    background-color: rgba(102, 204, 57,.9);
 }
 
 .available-guesses-container {
@@ -320,7 +328,7 @@ input::placeholder {
 }
 
 .guess-used {
-    background-color: #ec4e4f;
+    background-color: #271a47;
 }
 
 .user-word-form__input {
@@ -341,6 +349,11 @@ input::placeholder {
 
     .main-content {
         flex-direction: column;
+        min-height: calc(100vh - 65px);
+    }
+
+    .word-area {
+        justify-content: flex-end;
     }
     
     .user-guess__form {
@@ -359,9 +372,52 @@ input::placeholder {
         border: 0;
     }
 
+    .info-title {
+        padding: 0;
+        border:0;
+    }
+
+    .score-title {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #271a47;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+
+    .info-content {
+        min-height: 0;
+    }
+
+    .guesses-remaining-container,
+    .user-score-container {
+        position: absolute;
+        top: 5px;
+    }
+
+    .user-score-container {
+        right: 90px;
+    }
+
+    .score-title {
+        text-align: center;
+    }
+
+    .guesses-remaining-container {
+        right: 10px;
+    }
+
     .guess-option {
         font-size: 24px;
         padding: 0 16px;
+    }
+
+    .user-guess__submit {
+        margin-left: 0;
     }
 
     .user-guess__submit,
@@ -374,12 +430,22 @@ input::placeholder {
         margin-bottom: 70px;
     }
 
+    .guessed-words-area,
+    .guessed-letters-area {
+        width:50%;
+     }
+
     .user-info-area {
-        max-height: 190px;
+        display: flex;
         overflow: auto;
-        order: 1;
-        margin: 10px 0 0 0;
+        margin: 25px 0 0 0;
         min-width: 0;
+        max-width: none;
+        justify-content: space-between;
+    }
+
+    .show-word-form .start-overlay__content {
+        padding: 50px 0;
     }
 
     .start-overlay__choice {
@@ -390,6 +456,7 @@ input::placeholder {
 
     .user-word-form__submit {
         width: 100%;
+        margin: 0;
     }
 
     .alert-box {
