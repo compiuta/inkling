@@ -72,7 +72,19 @@
             }
         },
         toggleLandingPage: function() {
-            app.lettrView.bodyTag.classList.toggle('landing-page');
+            if(app.lettrView.bodyTag.classList.contains('landing-page')){
+                app.lettrView.fadeOutLandingpage();
+            } else {
+                app.lettrView.bodyTag.classList.toggle('landing-page');
+            }
+        },
+        fadeOutLandingpage: function() {
+            app.lettrView.bodyTag.classList.add('landing-page-fade');
+
+            setTimeout(function() {
+                app.lettrView.bodyTag.classList.toggle('landing-page');
+                app.lettrView.bodyTag.classList.remove('landing-page-fade');
+            }, 100);
         },
         userWinsListener: function() {
             app.lettrController.UserWins(true);
@@ -111,13 +123,23 @@
             
         },
         startOverlayToggle: function() {
-            app.lettrView.startOverlay.classList.toggle('hide');
-            app.lettrView.mainContentContainer.classList.toggle('hide');
+            if(app.lettrView.bodyTag.classList.contains('landing-page')) {
+                app.lettrView.startOverlay.classList.add('landing-page-fade');
+
+                setTimeout(function() {
+                    app.lettrView.startOverlay.classList.toggle('hide');
+                    app.lettrView.mainContentContainer.classList.toggle('hide');
+                    app.lettrView.startOverlay.classList.remove('landing-page-fade');
+                }, 100);
+            } else {
+                app.lettrView.startOverlay.classList.toggle('hide');
+                app.lettrView.mainContentContainer.classList.toggle('hide');
+            }
         },
         showUserWordInputForm: function() {
-            this.startOverlay.classList.add('show-word-form');
-            if(this.startOverlay.classList.contains('hide')) {
-                this.startOverlayToggle();
+            app.lettrView.startOverlay.classList.add('show-word-form');
+            if(app.lettrView.startOverlay.classList.contains('hide')) {
+                app.lettrView.startOverlayToggle();
             }
         },
         populateOverlaySelectedWord: function(word) {
@@ -128,8 +150,10 @@
             app.lettrView.render();
             app.lettrView.startOverlayToggle();
             app.lettrView.toggleLandingPage();
-            app.lettrView.startOverlay.classList.remove('word-selected');
-            app.lettrView.startOverlay.classList.remove('show-word-form');
+            setTimeout(function() {
+                app.lettrView.startOverlay.classList.remove('word-selected');
+                app.lettrView.startOverlay.classList.remove('show-word-form');
+            }, 100);
         },
         addEventListeners: function() {
             this.userGuessForm.addEventListener('submit', app.lettrController.validateUserGuess);
