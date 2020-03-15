@@ -161,8 +161,8 @@
             app.lettrView.displayWord(true);
         },
         startNewGame:function() {
-            app.lettrView.toggleLandingPage();
             app.lettrView.startOverlayToggle();
+            app.lettrView.toggleLandingPage();
             app.lettrModel.clearBoardModel(false, true);
             app.lettrView.clearBoardView();
             app.lettrView.toggleAlertBox();
