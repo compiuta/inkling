@@ -269,6 +269,16 @@ input::placeholder {
     margin: 2px 2px 0 0;
 }
 
+.button-primary {
+    padding: 5px 10px;
+    background-color: #31191d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .alert-box {
     padding: 30px 50px;
     background-color: rgba(204, 60, 57, .9);
@@ -281,10 +291,7 @@ input::placeholder {
 }
 
 .alert-box__button{
-    padding: 5px 10px;
-    background-color: #31191d;
-    border-radius: 5px;
-    cursor: pointer;
+    
 }
 
 .start-game-button {
@@ -384,9 +391,11 @@ input::placeholder {
         border:0;
     }
 
-    .score-title {
-        width: 70px;
-        height: 70px;
+    .score-title,
+    .end-game-button {
+        width: 60px;
+        height: 60px;
+        font-size: 12px;
         border-radius: 50%;
         background-color: #271a47;
         display: flex;
@@ -394,6 +403,7 @@ input::placeholder {
         align-items: center;
         justify-content: center;
         color: #fff;
+        text-align: center;
     }
 
     .info-content {
@@ -401,13 +411,18 @@ input::placeholder {
     }
 
     .guesses-remaining-container,
-    .user-score-container {
+    .user-score-container,
+    .end-game-button {
         position: absolute;
         top: 5px;
     }
 
+    .end-game-button {
+        right: 140px;
+    }
+
     .user-score-container {
-        right: 90px;
+        right: 75px;
     }
 
     .score-title {
