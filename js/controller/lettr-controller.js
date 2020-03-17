@@ -165,9 +165,24 @@
             app.lettrView.toggleLandingPage();
             app.lettrModel.clearBoardModel(false, true);
             app.lettrView.clearBoardView();
-            app.lettrView.toggleAlertBox();
-            app.lettrView.toggleButtonView();
-            app.lettrView.toggleUserForm();
+
+            if(!app.lettrView.alertBox.classList.contains('hide')) {
+                
+                if(app.lettrView.currentSetTimeout) {
+                    clearTimeout(app.lettrView.currentSetTimeout);
+                }
+
+                app.lettrView.toggleAlertBox();
+            }
+
+            if(!app.lettrView.alertBoxButton.classList.contains('hide')) {
+                app.lettrView.toggleButtonView();
+            }
+            
+            if(app.lettrView.userGuessForm.classList.contains('hide')) {
+                app.lettrView.toggleUserForm();
+            }
+            
             app.lettrView.populateAvailableGuesses();
             app.lettrView.alertBoxButton.removeEventListener('click', app.lettrController.startNewGame);
             app.lettrModel.incorrectGuessCounter = 0;

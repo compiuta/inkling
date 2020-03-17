@@ -163,6 +163,7 @@
             this.startOverlayChooseButton.addEventListener('click', app.lettrController.userInputInit);
             this.userWordForm.addEventListener('submit', app.lettrController.startUserInitializedGame);
             this.startGamebutton.addEventListener('click', this.startGameFromOverlay);
+            this.endGameButton.addEventListener('click', app.lettrController.startNewGame);
         },
         getDomElements: function() {
             this.bodyTag = document.querySelector('[data-js="body-tag"]');
@@ -188,6 +189,7 @@
             this.selectedUserWord = document.querySelector('[data-js="selected-user-word"]');
             this.startGamebutton = document.querySelector('[data-js="start-game-button"');
             this.mainContentContainer = document.querySelector('[js-data="main-content"]');
+            this.endGameButton = document.querySelector('[data-js="end-game"]');
         },
         clearBoardView: function() {
             this.guessedLettersContainer.innerHTML = '';
