@@ -15,9 +15,9 @@
             </header>
             <main js-data="main-content" class="main-content hide">
                 <div class="user-info-area">
+                    <a href="javascript:void(0);" data-js="end-game" class="end-game-button button-primary">End Game</a>
                     <div class="user-info__item user-score-container">
-                        <h4 class="score-title info-title">Score <span data-js="user-score" class="user-score"></span></h4> 
-                        
+                        <h4 class="score-title info-title">Score <span data-js="user-score" class="user-score"></span></h4>
                     </div>
                     <div class="user-info__item guesses-remaining-container">
                         <h4 class="info-title score-title">Guesses <span data-js="available-guesses-container" class="user-score"></span></h4>
@@ -37,7 +37,7 @@
                             <i data-js="alert-box-icon" class="alert-box__icon">i</i>
                             <p data-js="alert-box-message" class="alert-box_message"></p>
                         </div>
-                        <span data-js="alert-box-button" class="alert-box__button hide">next</span>
+                        <span data-js="alert-box-button" class="alert-box__button button-primary hide">next</span>
                     </div>
                     <div data-js="word-container" class="word-container"></div>
                     <form id="user-guess-form" data-js="user-guess-form" action="" class="user-guess__form">
